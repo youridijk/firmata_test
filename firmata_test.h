@@ -5,8 +5,8 @@
 #pragma interface "firmata_test.h"
 #endif
 
-#include <wx/wx.h>
-#include <wx/tglbtn.h>
+#include "wx/wx.h" 		// MFC - changed to quotes for XCode compliance
+#include "wx/tglbtn.h"	// MFC - changed to quotes for XCode compliance
 #include <stdint.h>
 
 

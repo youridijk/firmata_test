@@ -1,8 +1,19 @@
 #ifndef __serial_h__
 #define __serial_h__
 
-#include <wx/wx.h>
+#include "wx/wx.h" // MFC - changed to quotes for XCode compliance
 #include <stdint.h>
+
+// MFC - added these definitions here to we don't need to define a preprocessor macro
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+	#define WINDOWS
+#elif __APPLE__
+	#define MACOSX
+#elif __linux__
+   #define LINUS
+#else
+#   error "Unknown compiler"
+#endif
 
 #if defined(LINUX)
 #include <termios.h>

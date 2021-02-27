@@ -15,7 +15,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <wx/wx.h>
+#include "wx/wx.h" // MFC - changed to quotes for XCode compliance
 #include "serial.h"
 #include "firmata_test.h"
 
@@ -820,6 +820,15 @@ wxArrayString Serial::port_list()
 	CFMutableDictionaryRef classesToMatch;
 	io_iterator_t serialPortIterator;
 	if (IOMasterPort(NULL, &masterPort) != KERN_SUCCESS) return list;
+	
+	// changed this code to use the more general
+	classesToMatch = IOServiceMatching(kIOSerialBSDServiceValue);
+	if (!classesToMatch) return list;
+	CFDictionarySetValue(classesToMatch, CFSTR(kIOSerialBSDTypeKey), CFSTR(kIOSerialBSDAllTypes));
+	if (IOServiceGetMatchingServices(masterPort, classesToMatch,  &serialPortIterator) != KERN_SUCCESS) return list;
+	macos_ports(&serialPortIterator, list);
+
+	/*
 	// a usb-serial adaptor is usually considered a "modem",
 	// especially when it implements the CDC class spec
 	classesToMatch = IOServiceMatching(kIOSerialBSDServiceValue);
@@ -840,6 +849,7 @@ wxArrayString Serial::port_list()
 	   &serialPortIterator) != KERN_SUCCESS) return list;
 	macos_ports(&serialPortIterator, list);
 	IOObjectRelease(serialPortIterator);
+	*/
 #elif defined(WINDOWS)
 	// http://msdn.microsoft.com/en-us/library/aa365461(VS.85).aspx
 	// page with 7 ways - not all of them work!

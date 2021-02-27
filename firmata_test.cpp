@@ -348,7 +348,7 @@ void MyFrame::OnSliderDrag(wxScrollEvent &event)
 void MyFrame::OnPort(wxCommandEvent &event)
 {
 	int id = event.GetId();
-	wxString name = port_menu->FindItem(id)->GetLabel();
+	wxString name = port_menu->FindItem(id)->GetItemLabel();		// MFC - updated to newer function name
 
 	port.Close();
 	init_data();
@@ -675,7 +675,7 @@ MyApp::MyApp()
 
 bool MyApp::OnInit()
 {
-    MyFrame *frame = new MyFrame( NULL, -1, "Firmata Test", wxPoint(20,20), wxSize(400,640) );
+    MyFrame *frame = new MyFrame( NULL, -1, "Firmata Test", wxPoint(30, 30), wxSize(400,640) );
     frame->Show( true );
     
     return true;
