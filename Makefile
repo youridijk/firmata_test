@@ -17,7 +17,7 @@ TARGET = $(PROG)
 FINAL_TARGET = $(PROG).dmg
 CXX = g++
 STRIP = strip
-WXCONFIG = /opt/homebrew/bin/wx-config
+WXCONFIG = wx-config
 CPPFLAGS = -O2 -Wall -Wno-strict-aliasing `$(WXCONFIG) --cppflags` -D$(OS)
 LIBS = `$(WXCONFIG) --libs`
 else ifeq ($(OS), WINDOWS)
