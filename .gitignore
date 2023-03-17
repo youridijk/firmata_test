@@ -1,1 +1,9 @@
 .DS_Store
+
+*.o
+*.dmg
+*.app
+.idea
+out
+dmg_tmpdir
+firmata_test

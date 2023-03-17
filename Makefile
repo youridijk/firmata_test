@@ -1,5 +1,5 @@
-OS = LINUX
-#OS = MACOSX
+#OS = LINUX
+OS = MACOSX
 #OS = WINDOWS
 
 PROG = firmata_test
@@ -15,12 +15,11 @@ LIBS = `$(WXCONFIG) --libs`
 else ifeq ($(OS), MACOSX)
 TARGET = $(PROG)
 FINAL_TARGET = $(PROG).dmg
-SDK = /Developer/SDKs/MacOSX10.5.sdk
 CXX = g++
 STRIP = strip
-WXCONFIG = ~/wxwidgets/2.8.10.mac.teensy/bin/wx-config
-CPPFLAGS =  -O2 -Wall -Wno-strict-aliasing -isysroot $(SDK) `$(WXCONFIG) --cppflags` -D$(OS) -arch ppc -arch i386
-LIBS = -Xlinker -syslibroot -Xlinker $(SDK) `$(WXCONFIG) --libs`
+WXCONFIG = /opt/homebrew/bin/wx-config
+CPPFLAGS = -O2 -Wall -Wno-strict-aliasing `$(WXCONFIG) --cppflags` -D$(OS)
+LIBS = `$(WXCONFIG) --libs`
 else ifeq ($(OS), WINDOWS)
 TARGET = $(PROG).exe
 FINAL_TARGET = $(TARGET)
