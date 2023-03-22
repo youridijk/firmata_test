@@ -7,3 +7,4 @@
 out
 dmg_tmpdir
 firmata_test
+cmake-build-debug
